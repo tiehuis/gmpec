@@ -1,7 +1,7 @@
 ## gmpec
 
 This program should transform arbitrary mathematical expression into optimized
-GMP expressions.
+GMP expressions (eventually).
 
 ```
 gmpec '5 + 4 / 2'

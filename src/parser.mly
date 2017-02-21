@@ -7,18 +7,18 @@
 %nonassoc UMINUS
 
 %start main
-%type <int> main
+%type <Ast.expr> main
 %%
 main:
-    expr EOL                { $1 }
+    | expr EOL              { $1 }
     ;
 
 expr:
-    INT                     { $1 }
+    INT                     { Ast.Int $1 }
     | LPAREN expr RPAREN    { $2 }
-    | expr PLUS expr        { $1 + $3 }
-    | expr MINUS expr       { $1 - $3 }
-    | expr TIMES expr       { $1 * $3 }
-    | expr DIV expr         { $1 / $3 }
-    | MINUS expr %prec UMINUS { - $2 }
+    | expr PLUS expr        { Ast.Binary ("+", $1, $3) }
+    | expr MINUS expr       { Ast.Binary ("-", $1, $3) }
+    | expr TIMES expr       { Ast.Binary ("*", $1, $3) }
+    | expr DIV expr         { Ast.Binary ("/", $1, $3) }
+    | MINUS expr %prec UMINUS { Ast.Unary ("-", $2) }
     ;

@@ -1,4 +1,4 @@
-PROG  := calc
+PROG  := gmpec
 FLAGS := -I src -use-menhir
 
 all:
